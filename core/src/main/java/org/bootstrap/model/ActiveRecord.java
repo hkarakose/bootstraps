@@ -1,14 +1,10 @@
-package org.bootstrap.bean;
+package org.bootstrap.model;
 
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**

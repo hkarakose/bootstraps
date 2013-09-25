@@ -1,8 +1,5 @@
 package org.bootstrap.reflection;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.TypeVariable;
-
 /**
  * User: halil
  * Date: 9/19/13

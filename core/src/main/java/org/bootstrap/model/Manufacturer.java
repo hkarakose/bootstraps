@@ -1,4 +1,4 @@
-package org.bootstrap.bean;
+package org.bootstrap.model;
 
 /**
  * User: halil

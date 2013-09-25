@@ -1,0 +1,111 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>bootstrap-primefaces</artifactId>
+		<groupId>bootstrap-primefaces</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>core</artifactId>
+	<packaging>jar</packaging>
+
+	<name>core</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.2.9</version>
+		</dependency>
+
+		<!--Hibernate3 Dependencies-->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>3.6.8.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!--End of Hibernate3 Dependencies-->
+
+		<!--Spring Dependencies-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>3.2.3.RELEASE</version>
+		</dependency>
+
+		<!--Required for @Autowired, @PostConstruct, @Component, @Service, @Repository-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>3.2.3.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+
+		<!--Required for JPA integration-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>3.2.3.RELEASE</version>
+		</dependency>
+		<!--End of Spring Dependencies-->
+
+		<!--Required for JUnit tests-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>3.2.3.RELEASE</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>compile</goal>
+							<goal>test-compile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<outxml>true</outxml>
+					<aspectLibraries>
+						<aspectLibrary>
+							<groupId>org.springframework</groupId>
+							<artifactId>spring-aspects</artifactId>
+						</aspectLibrary>
+					</aspectLibraries>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<!--
+					  Aspects in src/main/java and src/main/aspects are added as default in the
+					  compile goal.
+					  Aspects in src/test/java and src/test/aspects are added as default in the
+					  test-compile goal.
+					  Aspects in src/main/java are added in the test-compile goal
+					  if weaveWithAspectsInMainSourceFolder is set to true
+					-->
+					<weaveWithAspectsInMainSourceFolder>false</weaveWithAspectsInMainSourceFolder>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

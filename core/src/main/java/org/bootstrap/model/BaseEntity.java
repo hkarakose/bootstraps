@@ -1,4 +1,4 @@
-package org.bootstrap.bean;
+package org.bootstrap.model;
 
 import javax.persistence.*;
 import java.util.Calendar;

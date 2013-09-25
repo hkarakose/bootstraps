@@ -1,9 +1,6 @@
-package org.bootstrap.bean;
-
-import org.springframework.beans.factory.annotation.Configurable;
+package org.bootstrap.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * User: halil

@@ -1,14 +1,13 @@
 package org.bootstrap;
 
-import org.bootstrap.bean.ActiveRecord;
-import org.bootstrap.bean.Dummy;
+import org.bootstrap.model.ActiveRecord;
+import org.bootstrap.model.Dummy;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.persistence.*;
-import javax.validation.ConstraintViolationException;
 import java.util.Calendar;
 import java.util.List;
 

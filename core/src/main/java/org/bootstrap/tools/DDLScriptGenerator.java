@@ -1,6 +1,6 @@
 package org.bootstrap.tools;
 
-import org.bootstrap.bean.Dummy;
+import org.bootstrap.model.Dummy;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 

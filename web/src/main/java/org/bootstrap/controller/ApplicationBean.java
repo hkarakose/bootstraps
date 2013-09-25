@@ -1,4 +1,4 @@
-package org.bootstrap.bean;
+package org.bootstrap.controller;
 
 import org.primefaces.component.menuitem.MenuItem;
 import org.primefaces.component.submenu.Submenu;

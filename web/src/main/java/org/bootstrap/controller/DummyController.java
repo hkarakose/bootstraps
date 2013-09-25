@@ -1,5 +1,8 @@
-package org.bootstrap.bean;
+package org.bootstrap.controller;
 
+import org.bootstrap.model.ActiveRecord;
+import org.bootstrap.model.Dummy;
+import org.bootstrap.model.Manufacturer;
 import org.bootstrap.util.MessageFactory;
 import org.primefaces.component.autocomplete.AutoComplete;
 import org.primefaces.component.inputtext.InputText;
