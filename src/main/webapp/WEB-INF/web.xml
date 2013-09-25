@@ -3,11 +3,16 @@
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 version="3.0"
 		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-  <!-- Servlets -->
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>validationServlet</servlet-name>
+		<servlet-class>com.gamenism.server.BootstrapValidationServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
-  <!-- Default page to serve -->
-  <welcome-file-list>
-    <welcome-file>bootstrap_gwt.html</welcome-file>
-  </welcome-file-list>
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>bootstrap_gwt.html</welcome-file>
+	</welcome-file-list>
 
 </web-app>
