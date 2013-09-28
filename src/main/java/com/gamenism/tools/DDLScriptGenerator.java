@@ -1,6 +1,6 @@
-package org.bootstrap.tools;
+package com.gamenism.tools;
 
-import org.bootstrap.model.Dummy;
+import com.gamenism.model.Dummy;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
