@@ -3,12 +3,43 @@
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 version="3.0"
 		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+	<!-- Spring configuration -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:META-INF/spring/applicationContext*.xml</param-value>
+	</context-param>
+
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<!-- If contextConfigLocation param not provided explicitly, searches for /WEB-INF/applicationContext.xml file by default -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- End Spring configuration -->
+
 	<!-- Servlets -->
 	<servlet>
 		<servlet-name>validationServlet</servlet-name>
 		<servlet-class>com.gamenism.server.BootstrapValidationServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+
+	<servlet>
+		<servlet-name>EmployeeService</servlet-name>
+		<servlet-class>com.gamenism.server.EmployeeServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmployeeService</servlet-name>
+		<url-pattern>/bootstrap_gwt/EmployeeService</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>UserService</servlet-name>
+		<servlet-class>com.gamenism.server.UserServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserService</servlet-name>
+		<url-pattern>/bootstrap_gwt/UserService</url-pattern>
+	</servlet-mapping>
 
 	<!-- Default page to serve -->
 	<welcome-file-list>

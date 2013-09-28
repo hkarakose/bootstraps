@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='bootstrap_gwt'>
+	<inherits name='com.gamenism.Models' />
+
   <!-- Inherit the core Web Toolkit stuff.                        -->
   <inherits name='com.google.gwt.user.User' />
-
-  <!-- We need the JUnit module in the main module,               -->
-  <!-- otherwise eclipse complains (Google plugin bug?)           -->
-  <inherits name='com.google.gwt.junit.JUnit' />
 
   <!-- Inherit the default GWT style sheet.  You can change       -->
   <!-- the theme of your GWT application by uncommenting          -->
   <!-- any one of the following lines.                            -->
   <inherits name='com.google.gwt.user.theme.standard.Standard' />
-  <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
+	<inherits name="com.github.gwtbootstrap.Bootstrap"/>
+	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
 
   <!-- Other module inherits                                      -->
@@ -23,4 +22,6 @@
   <source path='client' />
   <source path='shared' />
 
+	<servlet path="/EmployeeService" class="com.gamenism.server.EmployeeServiceImpl"/>
+	<servlet path="/UserService" class="com.gamenism.server.UserServiceImpl"/>
 </module>
