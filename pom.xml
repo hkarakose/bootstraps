@@ -4,6 +4,7 @@
 
 	<groupId>com.gamenism</groupId>
 	<artifactId>bootstrap-spring-jpa</artifactId>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>bootstrap-spring-jpa</name>
 	<url>http://maven.apache.org</url>
@@ -27,6 +28,13 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.main.extras</groupId>
+			<artifactId>glassfish-embedded-all</artifactId>
+			<version>4.0-b72</version>
+			<scope>provided</scope>
+		</dependency>
 		<!--End of Hibernate3 Dependencies-->
 
 		<!--Spring Dependencies-->
@@ -45,7 +53,7 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>1.7.2</version>
+			<version>1.6.11</version>
 		</dependency>
 
 		<!--Required for JPA integration-->
@@ -63,9 +71,17 @@
 			<version>3.2.3.RELEASE</version>
 		</dependency>
 
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
+		<defaultGoal>install</defaultGoal>
+
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -103,4 +119,8 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<properties>
+		<java.version>1.6</java.version>
+	</properties>
 </project>
