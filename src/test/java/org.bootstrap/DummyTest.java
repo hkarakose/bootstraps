@@ -1,7 +1,7 @@
 package org.bootstrap;
 
-import org.bootstrap.model.ActiveRecord;
-import org.bootstrap.model.Dummy;
+import com.gamenism.model.ActiveRecord;
+import com.gamenism.model.Dummy;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -110,7 +110,7 @@ public class DummyTest extends AbstractTest{
 
     private Dummy create() {
         Dummy dummy = new Dummy();
-        dummy.persist();
+        dummy.persist(dummy);
         return dummy;
     }
 
