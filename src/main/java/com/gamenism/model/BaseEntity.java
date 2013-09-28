@@ -12,12 +12,13 @@ import java.util.Date;
 @MappedSuperclass
 public class BaseEntity implements Serializable {
     private Long id;
-    private Date creationDate;
-    private Date modificationDate;
+    private Date createDate;
+    private Date modifyDate;
     private long version;
 
     public BaseEntity() {
-        this.creationDate = new Date();
+        this.createDate = new Date();
+        this.modifyDate = new Date();
     }
 
     @Id
@@ -40,20 +41,20 @@ public class BaseEntity implements Serializable {
     }
 
     @Temporal(value = TemporalType.TIMESTAMP)
-    public Date getCreationDate() {
-        return creationDate;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+    public void setCreateDate(Date creationDate) {
+        this.createDate = creationDate;
     }
 
-    public Date getModificationDate() {
-        return modificationDate;
+    public Date getModifyDate() {
+        return modifyDate;
     }
 
-    public void setModificationDate(Date modificationDate) {
-        this.modificationDate = modificationDate;
+    public void setModifyDate(Date modificationDate) {
+        this.modifyDate = modificationDate;
     }
 
 }
