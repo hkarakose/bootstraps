@@ -1,4 +1,4 @@
-package org.bootstrap.model;
+package com.gamenism.model;
 
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,8 +33,8 @@ public class ActiveRecord extends BaseEntity implements Serializable{
     }
 
     @Transactional
-    public void persist() {
-        entityManager.persist(this);
+    public void persist(BaseEntity entity) {
+        entityManager.persist(entity);
     }
 
     /**

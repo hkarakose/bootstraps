@@ -1,7 +1,7 @@
-package org.bootstrap.model;
+package com.gamenism.model;
 
 import javax.persistence.*;
-import java.util.Calendar;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,14 +10,14 @@ import java.util.Date;
  * Time: 7:25 PM
  */
 @MappedSuperclass
-public class BaseEntity {
+public class BaseEntity implements Serializable {
     private Long id;
     private Date creationDate;
     private Date modificationDate;
     private long version;
 
     public BaseEntity() {
-        this.creationDate = Calendar.getInstance().getTime();
+        this.creationDate = new Date();
     }
 
     @Id

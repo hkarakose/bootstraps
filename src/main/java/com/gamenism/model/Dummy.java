@@ -1,4 +1,4 @@
-package org.bootstrap.model;
+package com.gamenism.model;
 
 import javax.persistence.*;
 
