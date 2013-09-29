@@ -14,6 +14,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
@@ -53,6 +54,11 @@ public class LoginView extends Composite {
         });
     }
 
+    @UiHandler("signUpButton")
+    public void onClickSignUpButton(ClickEvent event) {
+        RootPanel.get().add(new SignupView());
+    }
+
 //    public void onKeyPress(KeyPressEvent event) {
 //        if (event.getCharCode() == 13) {
 //            loginButtonClicked(null);
@@ -70,21 +76,9 @@ public class LoginView extends Composite {
     private LoginView() {
         initWidget(ourUiBinder.createAndBindUi(this));
         userService = UserService.App.getInstance();
+
         driver.initialize(loginForm);
-
-        userService.create(new User("halilkarakose@gmail.com", "xxxx"), new AsyncCallback<Void>() {
-            public void onFailure(Throwable caught) {
-                Window.alert("User not created");
-            }
-
-            public void onSuccess(Void result) {
-                Window.alert("User created");
-            }
-        });
-
-
-        user = new User();
-        driver.edit(user);
+        driver.edit(new User());
     }
 
     interface Driver extends SimpleBeanEditorDriver<User, LoginForm> {
