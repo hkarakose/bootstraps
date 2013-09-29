@@ -16,6 +16,8 @@ public interface UserService extends RemoteService {
 
     void create(User user);
 
+    User findByEmail(String email);
+
     public static class App {
         private static final UserServiceAsync ourInstance = (UserServiceAsync) GWT.create(UserService.class);
 

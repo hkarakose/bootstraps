@@ -12,4 +12,6 @@ public interface UserServiceAsync {
 
     void find(Long id, AsyncCallback<User> async);
 
+    void findByEmail(String email, AsyncCallback<User> async);
+
 }
