@@ -1,7 +1,6 @@
-package org.bootstrap;
+package com.gamenism;
 
 import com.gamenism.dao.EmployeeDao;
-import com.gamenism.model.ActiveRecord;
 import com.gamenism.model.Employee;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

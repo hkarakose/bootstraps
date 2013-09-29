@@ -1,6 +1,6 @@
-package org.bootstrap;
+package com.gamenism;
 
-import com.gamenism.model.ActiveRecord;
+import com.gamenism.dao.ActiveRecord;
 import com.gamenism.model.Dummy;
 import org.junit.After;
 import org.junit.Assert;
@@ -43,8 +43,8 @@ public class DummyTest extends AbstractTest{
         long version = dummy.getVersion();
         dummy.clear();
 
-        ActiveRecord activeRecord = new ActiveRecord();
-        Dummy dummy1 = activeRecord.find(Dummy.class, id);
+        ActiveRecord<Dummy> activeRecord = new ActiveRecord<Dummy>(Dummy.class);
+        Dummy dummy1 = activeRecord.find(id);
         Assert.assertEquals(version, dummy1.getVersion());
     }
 
@@ -55,18 +55,18 @@ public class DummyTest extends AbstractTest{
         long version = dummy.getVersion();
         dummy.clear();
 
-        Dummy dummy1 = new Dummy();
-        dummy1 = dummy1.find(Dummy.class, id);
+        ActiveRecord<Dummy> activeRecord = new ActiveRecord<Dummy>(Dummy.class);
+        Dummy dummy1 = activeRecord.find(id);
         Assert.assertEquals(version, dummy1.getVersion());
     }
 
     @Test
     public void testUpdate() {
         Dummy dummy = create();
-        dummy.setModificationDate(Calendar.getInstance().getTime());
+        dummy.setModifyDate(Calendar.getInstance().getTime());
         dummy.merge();
-        long creationDate = dummy.getCreationDate().getTime();
-        long modificationDate = dummy.getModificationDate().getTime();
+        long creationDate = dummy.getCreateDate().getTime();
+        long modificationDate = dummy.getModifyDate().getTime();
         Assert.assertNotSame(creationDate, modificationDate);
         System.out.println("modificationDate = " + modificationDate);
         System.out.println("creationDate = " + creationDate);

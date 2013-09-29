@@ -1,4 +1,4 @@
-package org.bootstrap;
+package com.gamenism;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
