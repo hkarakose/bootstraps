@@ -1,6 +1,9 @@
 package com.gamenism.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  * User: halil
@@ -8,6 +11,9 @@ import javax.persistence.Entity;
  * Time: 5:39 PM
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name="findUserByEmail", query="select u from User u where u.email = ?")
+})
 public class User extends BaseEntity {
     private String email;
     private String password;
@@ -20,6 +26,7 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
+    @Column(unique = true)
     public String getEmail() {
         return email;
     }

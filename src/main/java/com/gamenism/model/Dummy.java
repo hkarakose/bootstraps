@@ -1,5 +1,7 @@
 package com.gamenism.model;
 
+import com.gamenism.dao.ActiveRecord;
+
 import javax.persistence.*;
 
 /**
@@ -8,7 +10,7 @@ import javax.persistence.*;
  * Time: 9:36 PM
  */
 @Entity
-public class Dummy extends ActiveRecord {
+public class Dummy extends ActiveRecord<Dummy> {
 
     private Integer yearOfManufacture;
     private String name;

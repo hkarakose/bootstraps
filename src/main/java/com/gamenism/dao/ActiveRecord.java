@@ -1,10 +1,15 @@
-package com.gamenism.model;
+package com.gamenism.dao;
 
+import com.gamenism.model.BaseEntity;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,16 +18,21 @@ import java.util.List;
  * Time: 12:11 AM
  */
 @Configurable
-public class ActiveRecord extends BaseEntity implements Serializable{
+@NamedQueries({
+        @NamedQuery(name="findUserByEmail", query="select u from User u where u.email = ?")
+})
+public class ActiveRecord<T> extends BaseEntity implements Serializable{
+    private Class<T> persistentClass;
+
     @PersistenceContext
     transient EntityManager entityManager;
 
     public ActiveRecord() {
-//        Type parametrizedType = getClass().getGenericSuperclass();
-//        //required because of initializations such as "new ActiveRecord()"
-//        if (parametrizedType instanceof ParameterizedType) {
-//            this.persistentClass = (Class<T>) ((ParameterizedType) parametrizedType).getActualTypeArguments()[0];
-//        }
+    }
+
+    public ActiveRecord(Class c) {
+        this();
+        this.persistentClass = c;
     }
 
     public static final EntityManager entityManager() {
@@ -41,12 +51,12 @@ public class ActiveRecord extends BaseEntity implements Serializable{
      * Deletes from database
      */
     @Transactional
-    public <A> void remove(Class<A> cls) {
+    public <T> void remove() {
         if (entityManager == null) entityManager = entityManager();
         if (entityManager.contains(this)) {
             entityManager.remove(this);
         } else {
-            A attached = find(cls, this.getId());
+            T attached = (T) find(this.getId());
             entityManager.remove(attached);
         }
     }
@@ -67,6 +77,7 @@ public class ActiveRecord extends BaseEntity implements Serializable{
 
     @Transactional
     public void merge() {
+        setModifyDate(new Date());
         entityManager.merge(this);
         entityManager.flush();
     }
@@ -83,9 +94,8 @@ public class ActiveRecord extends BaseEntity implements Serializable{
 //        return entityManager().find(persistentClass, id);
 //    }
 
-    public <A> A find(Class<A> cls, Long id) {
-        if (entityManager == null) entityManager = entityManager();
-        return entityManager.find(cls, id);
+    public T find(Long id) {
+        return entityManager.find(persistentClass, id);
     }
 
 //    public List<T> findAll() {
@@ -108,6 +118,20 @@ public class ActiveRecord extends BaseEntity implements Serializable{
                 .setFirstResult(firstResult)
                 .setMaxResults(maxResults)
                 .getResultList();
+    }
+
+    public T getSingleResultFromNamedQuery(String namedQuery, String... params) {
+        TypedQuery<T> query = entityManager.createNamedQuery(namedQuery, persistentClass);
+        int paramIndex = 1;
+        for (String param : params) {
+            query.setParameter(paramIndex++, param);
+        }
+
+        try {
+            return query.getSingleResult();
+        } catch(NoResultException e) {
+            return null;
+        }
     }
 
 }
