@@ -1,0 +1,20 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+			 xmlns:g='urn:import:com.google.gwt.user.client.ui'
+			 xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'
+			 xmlns:m='urn:import:com.gamenism.client.widgets'
+		>
+	<g:HTMLPanel>
+		<b:Row>
+			<b:Column size="6">
+				<b:Form>
+					<g:HTMLPanel>
+						<h2 class="form-signin-heading pull-left">Please sign up</h2>
+					</g:HTMLPanel>
+					<m:SignupForm ui:field="signupForm"/>
+					<b:Button ui:field="signUpButton" size="LARGE" type="PRIMARY">Sign up</b:Button>
+				</b:Form>
+			</b:Column>
+		</b:Row>
+
+	</g:HTMLPanel>
+</ui:UiBinder>
