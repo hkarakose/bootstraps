@@ -4,10 +4,14 @@
 		 version="3.0"
 		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
+
 	<!-- Spring configuration -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:META-INF/spring/applicationContext*.xml</param-value>
+		<param-value>
+			WEB-INF/applicationContext.xml
+			classpath*:META-INF/spring/applicationContext*.xml
+		</param-value>
 	</context-param>
 
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -15,6 +19,17 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
+	<!--Spring Security-->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- End Spring configuration -->
 
 	<!-- Servlets -->
@@ -23,6 +38,14 @@
 		<servlet-class>com.gamenism.server.BootstrapValidationServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	<servlet>
+		<servlet-name>remoteLogging</servlet-name>
+		<servlet-class>com.google.gwt.logging.server.RemoteLoggingServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>remoteLogging</servlet-name>
+		<url-pattern>/bootstrap_gwt/remote_logging</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>EmployeeService</servlet-name>
@@ -32,6 +55,7 @@
 		<servlet-name>EmployeeService</servlet-name>
 		<url-pattern>/bootstrap_gwt/EmployeeService</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>UserService</servlet-name>
 		<servlet-class>com.gamenism.server.UserServiceImpl</servlet-class>
@@ -39,6 +63,15 @@
 	<servlet-mapping>
 		<servlet-name>UserService</servlet-name>
 		<url-pattern>/bootstrap_gwt/UserService</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>authenticationService</servlet-name>
+		<servlet-class>com.gamenism.server.auth.AuthenticationServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>authenticationService</servlet-name>
+		<url-pattern>/bootstrap_gwt/authenticationService</url-pattern>
 	</servlet-mapping>
 
 	<!-- Default page to serve -->
