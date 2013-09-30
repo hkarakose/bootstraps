@@ -1,4 +1,4 @@
-package com.gamenism.client;
+package com.gamenism.client.view;
 
 import com.gamenism.client.service.EmployeeService;
 import com.gamenism.client.service.EmployeeServiceAsync;
