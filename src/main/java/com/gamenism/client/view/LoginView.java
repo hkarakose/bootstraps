@@ -1,5 +1,6 @@
 package com.gamenism.client.view;
 
+import com.gamenism.client.Views;
 import com.gamenism.client.service.UserService;
 import com.gamenism.client.service.UserServiceAsync;
 import com.gamenism.client.widgets.LoginForm;
@@ -11,11 +12,13 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
+
+import static com.gamenism.client.Views.SIGN_UP;
 
 /**
  * User: halil
@@ -56,7 +59,7 @@ public class LoginView extends Composite {
 
     @UiHandler("signUpButton")
     public void onClickSignUpButton(ClickEvent event) {
-        RootPanel.get().add(new SignupView());
+        History.newItem(SIGN_UP.name());
     }
 
 //    public void onKeyPress(KeyPressEvent event) {
