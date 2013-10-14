@@ -4,6 +4,8 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-public interface AuthenticationServiceAsync {
+import java.io.IOException;
+
+public interface SecurityServiceAsync {
     void retrieveUsername(AsyncCallback<String> async);
 }
