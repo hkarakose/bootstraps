@@ -6,9 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
 import java.util.Date;
 import java.util.List;
 
@@ -129,8 +126,13 @@ public class ActiveRecord<T> extends BaseEntity implements Serializable{
 
         try {
             return query.getSingleResult();
-        } catch(NoResultException e) {
-            return null;
+        } catch(RuntimeException e) {
+            Throwable cause = e.getCause();
+            if (cause instanceof NoResultException) {
+                return null;
+            }
+
+            throw e;
         }
     }
 
