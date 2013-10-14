@@ -1,0 +1,14 @@
+
+pom.xml'de proje adini guncelle:
+ApplicationBean.getAppName()'i guncelle.
+database.properties'i guncelle
+package degisikligi yaparsan, applicationContext.xml'de "context:component-scan"i guncelle
+i18n dosyalari baska package'a tasirsan, faces-config.xml'de "base-name" konfigurasyonunu guncelle.
+
+Yeni entity eklemek icin:
+ApplicationBean.init()'e yeni menu item ekle.
+Bean classini yaz
+Bean classi icinde init metodunda column adlarini yaz.
+
+Testing:
+extend your junit classes from AbstractTest
