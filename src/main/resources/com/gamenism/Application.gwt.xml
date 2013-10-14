@@ -2,26 +2,47 @@
 <module rename-to='bootstrap_gwt'>
 	<inherits name='com.gamenism.Models' />
 
-  <!-- Inherit the core Web Toolkit stuff.                        -->
-  <inherits name='com.google.gwt.user.User' />
+	<!-- Inherit the core Web Toolkit stuff.                        -->
+	<inherits name='com.google.gwt.user.User'/>
 
-  <!-- Inherit the default GWT style sheet.  You can change       -->
-  <!-- the theme of your GWT application by uncommenting          -->
-  <!-- any one of the following lines.                            -->
-  <inherits name='com.google.gwt.user.theme.standard.Standard' />
+	<!-- Inherit the default GWT style sheet.  You can change       -->
+	<!-- the theme of your GWT application by uncommenting          -->
+	<!-- any one of the following lines.                            -->
+	<inherits name='com.google.gwt.user.theme.standard.Standard'/>
 	<inherits name="com.github.gwtbootstrap.Bootstrap"/>
 	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
-  <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+	<!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
 
-  <!-- Other module inherits                                      -->
+	<!--JSR 303 validation-->
+	<inherits name="org.hibernate.validator.HibernateValidator" />
+	<replace-with class="com.google.gwt.sample.validation.client.SampleValidatorFactory">
+		<when-type-is class="javax.validation.ValidatorFactory" />
+	</replace-with>
 
-  <!-- Specify the app entry point class.                         -->
-  <entry-point class='com.gamenism.client.Application' />
+	<!-- LOGGING -->
+	<inherits name="com.google.gwt.logging.Logging" />
+	<set-property name="gwt.logging.enabled" value="TRUE" />
+	<set-property name="gwt.logging.logLevel" value="INFO" />
+	<set-property name="gwt.logging.developmentModeHandler" value="ENABLED" />
+	<set-property name="gwt.logging.systemHandler" value="DISABLED" />
+	<set-property name="gwt.logging.popupHandler" value="DISABLED" />
+	<set-property name="gwt.logging.consoleHandler" value="ENABLED"/>
+	<set-property name="gwt.logging.firebugHandler" value="ENABLED"/>
+	<set-property name="gwt.logging.simpleRemoteHandler" value="ENABLED" />
 
-  <!-- Specify the paths for translatable code                    -->
-  <source path='client' />
-  <source path='shared' />
+	<!--Prettier javascript generation-->
+	<!--<set-property name="compiler.stackMode" value="emulated" />-->
+	<!--<set-configuration-property name="compiler.emulatedStack.recordLineNumbers"	value="false"/>-->
+	<!--<set-configuration-property name="compiler.emulatedStack.recordFileNames" value="false"/>-->
 
-	<servlet path="/EmployeeService" class="com.gamenism.server.EmployeeServiceImpl"/>
+	<!-- app entry point class.                         -->
+	<entry-point class='com.gamenism.client.Application'/>
+
+	<!-- the paths for translatable code                    -->
+	<source path='client'/>
+	<source path='shared'/>
+
+	<servlet path="/employee" class="com.gamenism.server.EmployeeServiceImpl"/>
 	<servlet path="/UserService" class="com.gamenism.server.UserServiceImpl"/>
+	<servlet path="/AuthenticationService" class="com.gamenism.server.auth.SecurityServiceImpl"/>
 </module>
