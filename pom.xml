@@ -2,20 +2,24 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.gamenism</groupId>
+	<parent>
+		<artifactId>bootstraps</artifactId>
+		<groupId>bootstraps</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
 	<artifactId>bootstrap-spring-jpa</artifactId>
-	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>bootstrap-spring-jpa</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
+		<dependency>
+			<groupId>bootstraps</groupId>
+			<artifactId>bootstrap-model</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 
-		<!--<dependency>-->
-			<!--<groupId>org.hsqldb</groupId>-->
-			<!--<artifactId>hsqldb</artifactId>-->
-			<!--<version>2.2.9</version>-->
-		<!--</dependency>-->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -34,26 +38,20 @@
 			<version>1.4</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.glassfish.main.extras</groupId>
-			<artifactId>glassfish-embedded-all</artifactId>
-			<version>4.0-b72</version>
-			<scope>provided</scope>
-		</dependency>
 		<!--End of Hibernate3 Dependencies-->
 
 		<!--Spring Dependencies-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>3.2.3.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<!--Required for @Autowired, @PostConstruct, @Component, @Service, @Repository-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
-			<version>3.2.3.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -65,7 +63,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>3.2.3.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<!--End of Spring Dependencies-->
 
@@ -73,7 +71,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>3.2.3.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
@@ -127,5 +125,6 @@
 
 	<properties>
 		<java.version>1.6</java.version>
+		<spring.version>3.2.3.RELEASE</spring.version>
 	</properties>
 </project>
