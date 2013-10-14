@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<beans xmlns="http://www.springframework.org/schema/beans"
-			 xmlns:b="http://www.springframework.org/schema/security"
-			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			 xsi:schemaLocation="http://www.springframework.org/schema/beans
+<b:beans xmlns:b="http://www.springframework.org/schema/beans"
+		 xmlns="http://www.springframework.org/schema/security"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://www.springframework.org/schema/beans
 			 http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 			 http://www.springframework.org/schema/security
 			 http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-	<bean id="customAuthListener" class="com.gamenism.server.auth.CustomAuthListener"/>
+	<b:bean id="authenticationEntryPoint" class="com.gamenism.server.util.GwtAwareAuthenticationEntryPoint">
+		<b:property name="loginFormUrl" value="http://NOT_REQUIRED" />
+	</b:bean>
 
-	<b:http auto-config="true">
-		<b:intercept-url pattern="/gwtspringsecurityproject/**" access="ROLE_USER"/>
-		<b:intercept-url pattern="/gwt/**" access="ROLE_USER"/>
-		<b:intercept-url pattern="/**/*.html" access="ROLE_USER"/>
-		<b:intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-	</b:http>
+	<http auto-config="true" entry-point-ref="authenticationEntryPoint">
+		<form-login login-page="/bootstrap_gwt.html?gwt.codesvr=127.0.0.1:9997"
+					authentication-failure-url="/401.html"
+					default-target-url="/bootstrap_gwt.html?gwt.codesvr=127.0.0.1:9997"
+					always-use-default-target="true"/>
 
-	<bean id="customAuthenticationProvider" class="com.gamenism.server.auth.CustomAuthenticationProvider" />
+		<logout logout-success-url="/bootstrap_gwt.html?gwt.codesvr=127.0.0.1:9997" />
 
-	<b:authentication-manager alias="authenticationManager">
-		<b:authentication-provider ref="customAuthenticationProvider"/>
-	</b:authentication-manager>
+		<remember-me key="jbcpCalendar"/>
 
-</beans>
+		<intercept-url pattern="/bootstrap_gwt/employee" access="ROLE_USER"/>
+		<intercept-url pattern='/**' access='IS_AUTHENTICATED_ANONYMOUSLY'/>
+	</http>
+
+
+	<b:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder"/>
+
+	<!--<authentication-manager>-->
+	<!--<authentication-provider>-->
+	<!--&lt;!&ndash;<password-encoder  ref="passwordEncoder"/>&ndash;&gt;-->
+	<!--<jdbc-user-service data-source-ref="dataSource"  users-by-username-query="select username,authority, 1 from user5 where username=?"/>-->
+	<!--</authentication-provider>-->
+	<!--</authentication-manager>-->
+
+	<!--good for testing purposes-->
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="user" password="user" authorities="ROLE_USER"/>
+				<user name="admin" password="admin" authorities="ROLE_USER,ROLE_ADMIN"/>
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+</b:beans>
