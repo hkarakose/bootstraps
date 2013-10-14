@@ -1,7 +1,7 @@
 package com.gamenism.client.widgets;
 
 import com.gamenism.model.User;
-import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.CheckBox;
 import com.github.gwtbootstrap.client.ui.PasswordTextBox;
 import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.core.client.GWT;
@@ -10,7 +10,6 @@ import com.google.gwt.editor.client.HasEditorErrors;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import java.util.List;
@@ -25,6 +24,8 @@ public class LoginForm extends Composite implements HasEditorErrors<User> {
     TextBox email;
     @UiField
     PasswordTextBox password;
+    @UiField
+    CheckBox rememberMe;
 
     User user;
 

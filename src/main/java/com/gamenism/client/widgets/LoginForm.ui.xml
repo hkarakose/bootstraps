@@ -3,8 +3,8 @@
 			 xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'
 		>
 	<g:HTMLPanel>
-		<b:TextBox ui:field="email" blockLevel="true" placeholder="Email address"/>
-		<b:PasswordTextBox ui:field="password" blockLevel="true" placeholder="Password"/>
-		<b:CheckBox formValue="remember-me" text="Remember me"/>
+		<b:TextBox ui:field="email" name="j_username" blockLevel="true" placeholder="Email address"/>
+		<b:PasswordTextBox ui:field="password" name="j_password" blockLevel="true" placeholder="Password"/>
+		<b:CheckBox ui:field="rememberMe" formValue="true" text="Remember me" name="_spring_security_remember_me"/>
 	</g:HTMLPanel>
 </ui:UiBinder>
