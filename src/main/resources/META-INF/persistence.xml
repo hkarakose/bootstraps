@@ -5,6 +5,12 @@
 
 	<persistence-unit name="myPersistenceUnit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.gamenism.model.Dummy</class>
+		<class>com.gamenism.model.Employee</class>
+		<class>com.gamenism.model.User</class>
+		<class>com.gamenism.model.UserGroup</class>
+		<class>com.gamenism.model.UserGroupRole</class>
+		<class>com.gamenism.model.Manufacturer</class>
 		<properties>
 			<!--<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>-->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
