@@ -7,14 +7,17 @@
 	<g:HTMLPanel>
 		<b:Row>
 			<b:Column size="6">
-				<b:Form addStyleNames="form-signin">
-					<g:HTMLPanel>
-						<h2 class="form-signin-heading pull-left">Please sign in</h2>
-					</g:HTMLPanel>
-					<m:LoginForm ui:field="loginForm"/>
-					<b:Button ui:field="signInButton" size="LARGE" type="SUCCESS">Sign in</b:Button>
-					<b:Button ui:field="signUpButton" size="LARGE" type="PRIMARY">Sign up</b:Button>
-				</b:Form>
+				<g:HTMLPanel>
+					<b:Form addStyleNames="form-signin">
+						<g:HTMLPanel>
+							<h2 class="form-signin-heading pull-left">Please sign in</h2>
+						</g:HTMLPanel>
+						<m:LoginForm ui:field="loginForm"/>
+						<b:Button ui:field="signInButton" size="LARGE" type="SUCCESS">Login</b:Button>
+						<b:Button ui:field="signUpButton" size="LARGE" type="PRIMARY">Sign up</b:Button>
+						<b:Label ui:field="loginResult"/>
+					</b:Form>
+				</g:HTMLPanel>
 			</b:Column>
 		</b:Row>
 	</g:HTMLPanel>

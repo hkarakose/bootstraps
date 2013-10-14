@@ -1,19 +1,24 @@
 package com.gamenism.client.view;
 
+import com.gamenism.client.Application;
 import com.gamenism.client.Views;
+import com.gamenism.client.service.SecurityService;
+import com.gamenism.client.service.SecurityServiceAsync;
 import com.gamenism.client.service.UserService;
 import com.gamenism.client.service.UserServiceAsync;
+import com.gamenism.client.util.LoginRequestBuilder;
 import com.gamenism.client.widgets.LoginForm;
 import com.gamenism.model.User;
 import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.Label;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.http.client.*;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
@@ -34,6 +39,8 @@ public class LoginView extends Composite {
     Button signInButton;
     @UiField
     Button signUpButton;
+    @UiField
+    Label loginResult;
 
     User user;
 
@@ -44,17 +51,10 @@ public class LoginView extends Composite {
 
     @UiHandler("signInButton")
     public void onClickSignInButton(ClickEvent event) {
-        userService.find(1l, new AsyncCallback<User>() {
-            public void onFailure(Throwable caught) {
-                Window.alert("User not found");
-            }
+        user = driver.flush();
+        LoginRequestBuilder requestBuilder = new LoginRequestBuilder(user);
 
-            public void onSuccess(User result) {
-                user = result;
-                Window.alert("User found: " + user);
-                driver.edit(user);
-            }
-        });
+        requestBuilder.send();
     }
 
     @UiHandler("signUpButton")
@@ -69,6 +69,7 @@ public class LoginView extends Composite {
 //    }
 
     private static LoginView me;
+
     public static LoginView getInstance() {
         if (me == null) {
             me = new LoginView();
@@ -79,7 +80,6 @@ public class LoginView extends Composite {
     private LoginView() {
         initWidget(ourUiBinder.createAndBindUi(this));
         userService = UserService.App.getInstance();
-
         driver.initialize(loginForm);
         driver.edit(new User());
     }
