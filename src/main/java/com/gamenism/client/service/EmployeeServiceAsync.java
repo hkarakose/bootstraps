@@ -11,5 +11,5 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 public interface EmployeeServiceAsync {
     void getEmployee(Long employeeId, AsyncCallback<Employee> async);
 
-    void create(Employee employee, AsyncCallback<Void> async);
+    void create(Employee employee, AsyncCallback<Employee> async);
 }

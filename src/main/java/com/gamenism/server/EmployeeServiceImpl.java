@@ -17,7 +17,8 @@ public class EmployeeServiceImpl extends RemoteServiceServlet implements Employe
         return activeRecord.find(1l);
     }
 
-    public void create(Employee employee) {
+    public Employee create(Employee employee) {
         activeRecord.persist(employee);
+        return employee;
     }
 }

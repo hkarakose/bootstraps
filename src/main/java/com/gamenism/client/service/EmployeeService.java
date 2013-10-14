@@ -10,11 +10,11 @@ import com.google.gwt.core.client.GWT;
  * Date: 9/27/13
  * Time: 11:11 PM
  */
-@RemoteServiceRelativePath("EmployeeService")
+@RemoteServiceRelativePath("employee")
 public interface EmployeeService extends RemoteService {
     public Employee getEmployee(Long employeeId);
 
-    void create(Employee employee);
+    Employee create(Employee employee);
 
     public static class App {
         private static final EmployeeServiceAsync ourInstance = (EmployeeServiceAsync) GWT.create(EmployeeService.class);
