@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 version="3.0"
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+
+	<!-- Spring configuration -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			WEB-INF/applicationContext.xml
+			classpath*:META-INF/spring/applicationContext*.xml
+		</param-value>
+	</context-param>
+
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<!-- If contextConfigLocation param not provided explicitly, searches for /WEB-INF/applicationContext.xml file by default -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!--Spring Security-->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- End Spring configuration -->
+
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>validationServlet</servlet-name>
+		<servlet-class>com.gamenism.server.BootstrapValidationServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>remoteLogging</servlet-name>
+		<servlet-class>com.google.gwt.logging.server.RemoteLoggingServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>remoteLogging</servlet-name>
+		<url-pattern>/bootstrap_gwt/remote_logging</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EmployeeService</servlet-name>
+		<servlet-class>com.gamenism.server.EmployeeServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmployeeService</servlet-name>
+		<url-pattern>/bootstrap_gwt/employee</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UserService</servlet-name>
+		<servlet-class>com.gamenism.server.UserServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserService</servlet-name>
+		<url-pattern>/bootstrap_gwt/UserService</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>authenticationService</servlet-name>
+		<servlet-class>com.gamenism.server.auth.SecurityServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>authenticationService</servlet-name>
+		<url-pattern>/bootstrap_gwt/AuthenticationService</url-pattern>
+	</servlet-mapping>
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>bootstrap_gwt.html</welcome-file>
+	</welcome-file-list>
+
+</web-app>

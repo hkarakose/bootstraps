@@ -1,0 +1,10 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+			 xmlns:g='urn:import:com.google.gwt.user.client.ui'
+			 xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'
+		>
+	<g:HTMLPanel>
+		<b:TextBox ui:field="email" name="j_username" blockLevel="true" placeholder="Email address"/>
+		<b:PasswordTextBox ui:field="password" name="j_password" blockLevel="true" placeholder="Password"/>
+		<b:CheckBox ui:field="rememberMe" formValue="true" text="Remember me" name="_spring_security_remember_me"/>
+	</g:HTMLPanel>
+</ui:UiBinder>
