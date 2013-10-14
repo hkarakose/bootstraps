@@ -32,13 +32,6 @@ public class ActiveRecord<T> extends BaseEntity implements Serializable{
         this.persistentClass = c;
     }
 
-    public static final EntityManager entityManager() {
-        EntityManager em = new ActiveRecord().entityManager;
-        if (em == null)
-            throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
-        return em;
-    }
-
     @Transactional
     public void persist(BaseEntity entity) {
         entityManager.persist(entity);
@@ -49,7 +42,6 @@ public class ActiveRecord<T> extends BaseEntity implements Serializable{
      */
     @Transactional
     public <T> void remove() {
-        if (entityManager == null) entityManager = entityManager();
         if (entityManager.contains(this)) {
             entityManager.remove(this);
         } else {
@@ -60,13 +52,9 @@ public class ActiveRecord<T> extends BaseEntity implements Serializable{
 
     @Transactional
     public void flush() {
-        if (entityManager == null) entityManager = entityManager();
         entityManager.flush();
     }
 
-    /**
-     *  Clears the persistence context
-     */
     @Transactional
     public void clear() {
         entityManager.clear();
@@ -80,11 +68,11 @@ public class ActiveRecord<T> extends BaseEntity implements Serializable{
     }
 
     public long count() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM " + this.getClass().getName() + " o", Long.class).getSingleResult();
+        return entityManager.createQuery("SELECT COUNT(o) FROM " + this.getClass().getName() + " o", Long.class).getSingleResult();
     }
 
     public <A> Long count(Class<A> cls) {
-        return entityManager().createQuery("SELECT COUNT(o) FROM " + cls.getName() + " o", Long.class).getSingleResult();
+        return entityManager.createQuery("SELECT COUNT(o) FROM " + cls.getName() + " o", Long.class).getSingleResult();
     }
 
 //    public T find(Long id) {
@@ -100,7 +88,7 @@ public class ActiveRecord<T> extends BaseEntity implements Serializable{
 //    }
 
     public <A> List<A> findAll(Class<A> cls) {
-        return entityManager().createQuery("SELECT o FROM " + cls.getName() + " o", cls).getResultList();
+        return entityManager.createQuery("SELECT o FROM " + cls.getName() + " o", cls).getResultList();
     }
 
 //    public List<T> findEntries(int firstResult, int maxResults) {
@@ -111,7 +99,7 @@ public class ActiveRecord<T> extends BaseEntity implements Serializable{
 //    }
 
     public <A> List<A> findEntries(Class<A> cls, int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM " + cls.getName() + " o", cls)
+        return entityManager.createQuery("SELECT o FROM " + cls.getName() + " o", cls)
                 .setFirstResult(firstResult)
                 .setMaxResults(maxResults)
                 .getResultList();
