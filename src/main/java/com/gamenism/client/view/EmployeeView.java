@@ -2,6 +2,7 @@ package com.gamenism.client.view;
 
 import com.gamenism.client.service.EmployeeService;
 import com.gamenism.client.service.EmployeeServiceAsync;
+import com.gamenism.client.util.SecureAsyncCallback;
 import com.gamenism.client.widgets.EmployeeForm;
 import com.gamenism.model.Employee;
 import com.google.gwt.core.client.GWT;
@@ -56,12 +57,8 @@ public class EmployeeView extends Composite{
     @UiHandler(value = "saveEmployeeButton")
     void onClickSave(ClickEvent event) {
         driver.flush();
-        employeeService.create(employee, new AsyncCallback<Void>() {
-            public void onFailure(Throwable caught) {
-                System.err.println("Error: " + caught);
-            }
-
-            public void onSuccess(Void result) {
+        employeeService.create(employee, new SecureAsyncCallback<Employee>() {
+            public void onSuccess(Employee result) {
                 Window.alert("Persist success");
             }
         });
