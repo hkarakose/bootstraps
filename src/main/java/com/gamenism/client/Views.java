@@ -1,5 +1,5 @@
 package com.gamenism.client;
 
 public enum Views {
-    SIGN_UP;
+    HOME, SIGN_UP, LOGIN, USER_AREA;
 }
