@@ -53,7 +53,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>EmployeeService</servlet-name>
-		<url-pattern>/bootstrap_gwt/EmployeeService</url-pattern>
+		<url-pattern>/bootstrap_gwt/employee</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -67,11 +67,11 @@
 
 	<servlet>
 		<servlet-name>authenticationService</servlet-name>
-		<servlet-class>com.gamenism.server.auth.AuthenticationServiceImpl</servlet-class>
+		<servlet-class>com.gamenism.server.auth.SecurityServiceImpl</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>authenticationService</servlet-name>
-		<url-pattern>/bootstrap_gwt/authenticationService</url-pattern>
+		<url-pattern>/bootstrap_gwt/AuthenticationService</url-pattern>
 	</servlet-mapping>
 
 	<!-- Default page to serve -->
