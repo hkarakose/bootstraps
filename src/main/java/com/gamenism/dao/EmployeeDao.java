@@ -1,7 +1,6 @@
 package com.gamenism.dao;
 
 import com.gamenism.model.Employee;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 
 /**
