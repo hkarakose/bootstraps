@@ -75,12 +75,12 @@ public class ActiveRecord<T> extends BaseEntity implements Serializable{
         return entityManager.createQuery("SELECT COUNT(o) FROM " + cls.getName() + " o", Long.class).getSingleResult();
     }
 
-//    public T find(Long id) {
-//        return entityManager().find(persistentClass, id);
-//    }
+    public T find(Class<T> cls, Long id) {
+        return entityManager.find(cls, id);
+    }
 
     public T find(Long id) {
-        return entityManager.find(persistentClass, id);
+        return find(persistentClass, id);
     }
 
 //    public List<T> findAll() {
@@ -120,6 +120,24 @@ public class ActiveRecord<T> extends BaseEntity implements Serializable{
                 return null;
             }
 
+            throw e;
+        }
+    }
+
+    public List<T> findByNamedQuery(Class<T> c, String namedQuery, String... params) {
+        TypedQuery<T> query = entityManager.createNamedQuery(namedQuery, c);
+        int paramIndex = 1;
+        for (String param : params) {
+            query.setParameter(paramIndex++, param);
+        }
+
+        try {
+            return query.getResultList();
+        } catch(RuntimeException e) {
+            Throwable cause = e.getCause();
+//            if (cause instanceof NoResultException) {
+//                return null;
+//            }
             throw e;
         }
     }
