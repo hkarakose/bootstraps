@@ -1,5 +1,6 @@
 package com.gamenism.client.view;
 
+import com.gamenism.client.Views;
 import com.gamenism.client.service.UserService;
 import com.gamenism.client.service.UserServiceAsync;
 import com.gamenism.client.widgets.SignupForm;
@@ -11,6 +12,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
@@ -44,8 +46,13 @@ public class SignupView extends Composite {
 
             public void onSuccess(Void result) {
                 Window.alert("User created successfully.");
+                goToLoginPage();
             }
         });
+    }
+
+    private void goToLoginPage() {
+        History.newItem(Views.LOGIN.name());
     }
 
     private boolean userExists(final User userFromForm) {
