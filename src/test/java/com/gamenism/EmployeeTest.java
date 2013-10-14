@@ -2,10 +2,9 @@ package com.gamenism;
 
 import com.gamenism.dao.EmployeeDao;
 import com.gamenism.model.Employee;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import static org.junit.Assert.*;
 
 /**
  * User: halil
@@ -30,7 +29,7 @@ public class EmployeeTest extends AbstractTest {
 
         Employee employee = employeeDao.find(id);
         System.out.println("employee = " + employee.getId());
-        assertEquals(id, employee.getId());
+        Assert.assertEquals(id, employee.getId());
     }
 
     private Employee persist() {
