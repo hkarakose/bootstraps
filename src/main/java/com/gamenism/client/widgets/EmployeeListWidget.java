@@ -5,12 +5,10 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.adapters.HasDataEditor;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-import static com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.*;
 import static com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.*;
 
 /**
